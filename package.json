@@ -35,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "ajv": "^8.11.0",
+    "ajv-keywords": "^3.5.2"
   }
 }
