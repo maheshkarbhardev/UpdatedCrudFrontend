@@ -36,8 +36,14 @@ const Home = () => {
         <h1 style={{ fontWeight: "600", color: "purple" }}>Employee List</h1>
       </div>
 
-      <div>
-        <table>
+        <div style={{display:'flex', flexDirection:'row', justifyContent:'center',marginBottom:'20px'}}>
+            <button style={{padding:'7px 10px', background:'purple',color:'white' , borderRadius:'5px', marginRight:'10px'}}>Add Employee</button>
+        </div>
+
+      <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
+
+        
+        <table style={{width:'80%'}}>
           <thead>
             <tr>
               <th>Id</th>
@@ -72,11 +78,11 @@ const Home = () => {
                   <td>{item.interests}</td>
                   <td>{formattedDate}</td>
                   <td>
-                    <button>Edit</button>
-                    <button onClick={() => deleteEmployee(item.id)}>
+                    <button style={{padding:'7px 10px', background:'yellow' , fontWeight:'bold', borderRadius:'5px', marginRight:'10px'}}>Edit</button>
+                    <button style={{padding:'7px 10px', background:'red' , fontWeight:'bold', borderRadius:'5px', marginRight:'10px'}} onClick={() => deleteEmployee(item.id)}>
                       Delete
                     </button>
-                    <button>View</button>
+                    <button style={{padding:'7px 10px', background:'lightgreen' , fontWeight:'bold', borderRadius:'5px', marginRight:'10px'}}>View</button>
                   </td>
                 </tr>
               );
