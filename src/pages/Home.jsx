@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [employee, setEmployee] = useState([]);
@@ -36,14 +37,37 @@ const Home = () => {
         <h1 style={{ fontWeight: "600", color: "purple" }}>Employee List</h1>
       </div>
 
-        <div style={{display:'flex', flexDirection:'row', justifyContent:'center',marginBottom:'20px'}}>
-            <button style={{padding:'7px 10px', background:'purple',color:'white' , borderRadius:'5px', marginRight:'10px'}}>Add Employee</button>
-        </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          marginBottom: "20px",
+        }}
+      >
+        <Link to="/addEmployee">
+          <button
+            style={{
+              padding: "7px 10px",
+              background: "purple",
+              color: "white",
+              borderRadius: "5px",
+              marginRight: "10px",
+            }}
+          >
+            Add Employee
+          </button>
+        </Link>
+      </div>
 
-      <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
-
-        
-        <table style={{width:'80%'}}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <table style={{ width: "80%" }}>
           <thead>
             <tr>
               <th>Id</th>
@@ -78,11 +102,42 @@ const Home = () => {
                   <td>{item.interests}</td>
                   <td>{formattedDate}</td>
                   <td>
-                    <button style={{padding:'7px 10px', background:'yellow' , fontWeight:'bold', borderRadius:'5px', marginRight:'10px'}}>Edit</button>
-                    <button style={{padding:'7px 10px', background:'red' , fontWeight:'bold', borderRadius:'5px', marginRight:'10px'}} onClick={() => deleteEmployee(item.id)}>
+                    <Link to={`/editEmployee/${item.id}`}>
+                      <button
+                        style={{
+                          padding: "7px 10px",
+                          background: "yellow",
+                          fontWeight: "bold",
+                          borderRadius: "5px",
+                          marginRight: "10px",
+                        }}
+                      >
+                        Edit
+                      </button>
+                    </Link>
+                    <button
+                      style={{
+                        padding: "7px 10px",
+                        background: "red",
+                        fontWeight: "bold",
+                        borderRadius: "5px",
+                        marginRight: "10px",
+                      }}
+                      onClick={() => deleteEmployee(item.id)}
+                    >
                       Delete
                     </button>
-                    <button style={{padding:'7px 10px', background:'lightgreen' , fontWeight:'bold', borderRadius:'5px', marginRight:'10px'}}>View</button>
+                    <button
+                      style={{
+                        padding: "7px 10px",
+                        background: "lightgreen",
+                        fontWeight: "bold",
+                        borderRadius: "5px",
+                        marginRight: "10px",
+                      }}
+                    >
+                      View
+                    </button>
                   </td>
                 </tr>
               );

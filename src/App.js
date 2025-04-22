@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
+import AddEmployee from './pages/AddEmployee';
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
       <ToastContainer position='top-right'/>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/addEmployee' element={<AddEmployee/>}/>
+        <Route path='/editEmployee/:id' element={<AddEmployee/>}/>
       </Routes>
     </div>
     </BrowserRouter>
