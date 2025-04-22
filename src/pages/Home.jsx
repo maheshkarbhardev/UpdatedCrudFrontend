@@ -127,17 +127,20 @@ const Home = () => {
                     >
                       Delete
                     </button>
-                    <button
-                      style={{
-                        padding: "7px 10px",
-                        background: "lightgreen",
-                        fontWeight: "bold",
-                        borderRadius: "5px",
-                        marginRight: "10px",
-                      }}
-                    >
-                      View
-                    </button>
+
+                    <Link to={`/view/${item.id}`}>
+                      <button
+                        style={{
+                          padding: "7px 10px",
+                          background: "lightgreen",
+                          fontWeight: "bold",
+                          borderRadius: "5px",
+                          marginRight: "10px",
+                        }}
+                      >
+                        View
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               );
