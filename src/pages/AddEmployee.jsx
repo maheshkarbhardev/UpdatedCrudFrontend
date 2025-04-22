@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const initialValues = {
@@ -174,7 +174,7 @@ const AddEmployee = () => {
         <h1>Employee Registartion Form</h1>
       </div>
 
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName">FirstName:- </label>
           <input
@@ -329,7 +329,13 @@ const AddEmployee = () => {
             placeholder="Enter Birthdate"
             onChange={handleChange}
           />
-          <button type="submit">Submit</button>
+          <div style={{ display: "flex" }}>
+            <button type="submit" >Submit</button>
+
+            <Link to="/">
+              <button>Go Back</button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>
