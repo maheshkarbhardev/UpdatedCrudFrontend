@@ -5,10 +5,36 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const [employee, setEmployee] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortField, setSortField] = useState("firstName");
+  const [sortOrder, setSortOrder] = useState("ASC");
 
   const fetchEmployee = async () => {
     const response = await axios.get("http://localhost:5000/api/get");
     setEmployee(response.data);
+  };
+
+  const searchEmployee = async (searchTerm) => {
+    const response = await axios.get(
+      `http://localhost:5000/api/search?firstName=${searchTerm}&lastName=${searchTerm}&email=${searchTerm}&phoneNumber=${searchTerm}`
+    );
+
+    setEmployee(response.data);
+  };
+
+  const sortEmployee = async (field, order) => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/sort", {
+        params: {
+          sortField: field,
+          sortOrder: order,
+        },
+      });
+      setEmployee(response.data);
+    } catch (error) {
+      console.error("Error sorting:", error);
+      toast.error("Sorting failed.");
+    }
   };
 
   const deleteEmployee = (id) => {
@@ -21,6 +47,18 @@ const Home = () => {
       fetchEmployee();
     }, 300);
   };
+
+  useEffect(() => {
+    if (searchTerm) {
+      searchEmployee(searchTerm);
+    } else {
+      fetchEmployee();
+    }
+  }, [searchTerm]);
+
+  useEffect(() => {
+    sortEmployee(sortField, sortOrder);
+  }, [sortField, sortOrder]);
 
   useEffect(() => {
     fetchEmployee();
@@ -58,6 +96,39 @@ const Home = () => {
             Add Employee
           </button>
         </Link>
+      </div>
+
+      <div style={{ display: "flex" , flexDirection:'row', justifyContent:'center'}}>
+        <div>
+          <input
+            style={{ width: "500px" }}
+            type="text"
+            value={searchTerm}
+            placeholder="Search By FirstName ,LastName, Email , PhoneNumber"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <select
+            onChange={(e) => setSortField(e.target.value)}
+            value={sortField}
+          >
+            <option value="firstName">First Name</option>
+            <option value="lastName">Last Name</option>
+            <option value="email">Email</option>
+          </select>
+        </div>
+
+        <div>
+          <select
+            onChange={(e) => setSortOrder(e.target.value)}
+            value={sortOrder}
+          >
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+          </select>
+        </div>
       </div>
 
       <div
